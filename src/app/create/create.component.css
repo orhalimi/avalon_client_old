@@ -1,0 +1,109 @@
+.app-toolbar-filler {
+    flex: 1 1 auto;
+}
+
+.createapp {
+  alignment: center;
+  margin:0 auto;
+}
+.div-or {
+  opacity: 0.7;
+  background-color: #f0f0f0;
+}
+
+.headline {
+  font-size: 24px;
+  font-weight: bold;
+  alignment: center;
+  text-align: center;
+  align-content: center;
+  width:100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.eee {
+  alignment: center;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  size: landscape;
+}
+
+
+.Merlin {
+  background-image: url('/assets/Merlin.png');
+  background-size: cover;
+}
+
+.Percival {
+  background-image: url('/assets/Percival.png');
+  background-size: cover;
+}
+
+.Good-Angel {
+  background-image: url('/assets/Good-Angel.png');
+  background-size: cover;
+}
+
+.Titanya {
+  background-image: url('/assets/Titanya.png');
+  background-size: cover;
+}
+
+.Nimue {
+  background-image: url('/assets/Nimue.png');
+  background-size: cover;
+}
+
+.Galahad {
+  background-image: url('/assets/Galahad.png');
+  background-size: cover;
+}
+
+.Sir-Kay {
+  background-image: url('/assets/Sir-Kay.png');
+  background-size: cover;
+}
+
+.Seer {
+  background-image: url('/assets/Seer.png');
+  background-size: cover;
+}
+
+.King-Arthur {
+  background-image: url('/assets/King-Arthur.png');
+  background-size: cover;
+}
+
+.Puck {
+  background-image: url('/assets/Puck.png');
+  background-size: cover;
+}
+
+.Morgana {
+  background-image: url('/assets/Morgana.png');
+  background-size: cover;
+}
+
+.Assassin {
+  background-image: url('/assets/Assassin.png');
+  background-size: cover;
+}
+
+.Mordred {
+  background-image: url('/assets/Mordred.png');
+  background-size: cover;
+}
+
+
+.Oberon {
+  background-image: url('/assets/Oberon.png');
+  background-size: cover;
+}
+
+.Bad-Angel {
+  background-image: url('/assets/Bad-Angel.png');
+  background-size: cover;
+}

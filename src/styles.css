@@ -1,0 +1,17 @@
+/* You can register global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: black; }
+
+.bg-img
+{
+  background-image: url('/assets/background2.jfif');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+}
+
+.character-img {
+  border-radius: 50%;
+}
