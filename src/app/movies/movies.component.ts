@@ -158,6 +158,7 @@ export class MoviesComponent implements OnInit {
 
   public JourneyVote() {
     this.player = this.authService.name;
+    if (this.journeyVote.vote < 0) { return; }
     if (this.player !== '' ) {
       // tslint:disable-next-line:max-line-length
       this.socket.send('{"type":"vote_for_journey", "content":' + '{"playerName": "' + this.player + '", "vote": ' + this.journeyVote.vote + ' }' + '}');

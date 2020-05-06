@@ -52,6 +52,16 @@
   background-size: cover;
 }
 
+.Ginerva {
+  background-image: url('/assets/Ginerva.png');
+  background-size: cover;
+}
+
+.Cordana {
+  background-image: url('/assets/Cordana.png');
+  background-size: cover;
+}
+
 .Nimue {
   background-image: url('/assets/Nimue.png');
   background-size: cover;
@@ -77,8 +87,37 @@
   background-size: cover;
 }
 
+.The-Coward {
+  background-image: url('/assets/The-Coward.png');
+  background-size: cover;
+}
+
+.Guinevere {
+  background-image: url('/assets/Guinevere.png');
+  background-size: cover;
+}
+
+.Lancelot-Good {
+  background-image: url('/assets/Lancelot-Good.png');
+  background-size: cover;
+}
+
+.Lancelot-Bad {
+  background-image: url('/assets/Lancelot-Bad.png');
+  background-size: cover;
+}
+.Merlin-Apprentice {
+  background-image: url('/assets/Merlin-Apprentice.png');
+  background-size: cover;
+}
+
 .Puck {
   background-image: url('/assets/Puck.png');
+  background-size: cover;
+}
+
+.Gawain {
+  background-image: url('/assets/Gawain.png');
   background-size: cover;
 }
 
@@ -87,8 +126,73 @@
   background-size: cover;
 }
 
+.Viviana {
+  background-image: url('/assets/Viviana.png');
+  background-size: cover;
+}
+
 .Assassin {
   background-image: url('/assets/Assassin.png');
+  background-size: cover;
+}
+
+.LoverY {
+  background-image: url('/assets/LoverY.png');
+  background-size: cover;
+}
+
+.LoverB {
+  background-image: url('/assets/LoverB.png');
+  background-size: cover;
+}
+
+.Prince-Claudin {
+  background-image: url('/assets/Prince-Claudin.png');
+  background-size: cover;
+}
+
+.Sir-Robin {
+  background-image: url('/assets/Sir-Robin.png');
+  background-size: cover;
+}
+
+.Pellinore {
+  background-image: url('/assets/Pellinore.png');
+  background-size: cover;
+}
+
+.Accolon {
+  background-image: url('/assets/Accolon.png');
+  background-size: cover;
+}
+
+.The-Questing-Beast {
+  background-image: url('/assets/The-Questing-Beast.png');
+  background-size: cover;
+}
+
+.King-Claudin {
+  background-image: url('/assets/King-Claudin.png');
+  background-size: cover;
+}
+
+.Nirlem {
+  background-image: url('/assets/Nirlem.png');
+  background-size: cover;
+}
+
+.Ginevra {
+  background-image: url('/assets/Ginevra.png');
+  background-size: cover;
+}
+
+.Lot {
+  background-image: url('/assets/Lot.png');
+  background-size: cover;
+}
+
+.Polygraph {
+  background-image: url('/assets/Polygraph.png');
   background-size: cover;
 }
 

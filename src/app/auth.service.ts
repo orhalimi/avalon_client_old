@@ -7,9 +7,13 @@ import { Router } from '@angular/router';
 export class AuthService {
 
   public data: any;
-  API_URL = 'http://localhost:12345'; //localhost
+  API_URL = 'http://35.157.7.252:12345'; // 52.59.255.210
   TOKEN_KEY = 'token';
+
+
+
   NAME = 'name';
+  EXPIRE = 'expiry';
 
   constructor(private http: HttpClient, private router: Router) {
     this.data = [];
@@ -27,11 +31,28 @@ export class AuthService {
   }
 
   get isAuthenticated() {
+    const itemStr = localStorage.getItem(this.EXPIRE)
+    // if the item doesn't exist, return null
+    if (!itemStr) {
+      return false;
+    }
+    const expiry = Number(itemStr);
+    const now = new Date();
+    // compare the expiry time of the item with the current time
+    if (now.getTime() > expiry) {
+      // If the item is expired, delete the item from storage
+      // and return null
+      localStorage.removeItem(this.NAME);
+      localStorage.removeItem(this.EXPIRE);
+      localStorage.removeItem(this.TOKEN_KEY);
+      return false;
+    }
     return !!localStorage.getItem(this.TOKEN_KEY);
   }
 
   logout() {
     localStorage.removeItem(this.NAME);
+    localStorage.removeItem(this.EXPIRE);
     localStorage.removeItem(this.TOKEN_KEY);
     this.router.navigateByUrl('/');
   }
@@ -40,7 +61,9 @@ export class AuthService {
 
     this.http.post(this.API_URL + '/login', '{"username": "' + username + '", "password": "' + pass + '"}').subscribe(
       (res: any) => {
+        const now = new Date()
         localStorage.setItem(this.TOKEN_KEY, res.token);
+        localStorage.setItem(this.EXPIRE, String(now.getTime() + 10000000000));
         localStorage.setItem(this.NAME, res.name);
         location.reload();
 
@@ -59,7 +82,7 @@ export class AuthService {
       password: pass
     };
 
-    this.http.post(this.API_URL + '/register', data, headers).subscribe(
+    this.http.post(this.API_URL + '/register2', data, headers).subscribe(
       (res: any) => {
         this.router.navigateByUrl('/');
       }

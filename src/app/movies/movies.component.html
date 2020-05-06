@@ -30,6 +30,10 @@
           Register
         </button>
       </td>
+
+
+
+
       <td>
         <ng-container *ngIf="this.pl.boardGame.state > 0">
           <button mat-button (click)="reset()" >
@@ -61,12 +65,15 @@
         <div  *ngIf= "(this.pl.boardGame.state && (this.pl.boardGame.state) != 0)" mat-card-avatar style="width: 60px; height: 60px;" class='{{this.pl.boardGame.secrets.character }}'></div>
       </td>
       <td>
-        <ng-container  *ngIf= "(this.pl.boardGame.state && (this.pl.boardGame.state) != 0)"  style="font-size: 16px;" >
-          <b> {{this.pl.boardGame.secrets.character}}, your secrets: {{this.pl.boardGame.secrets.secrets }} &nbsp;&nbsp;&nbsp;</b>
+        <ng-container  *ngIf= "(this.pl.boardGame.state && (this.pl.boardGame.state) != 0)"  style="font-size: 10px;" >
+          <b> {{this.pl.boardGame.secrets.character}}</b>
+        </ng-container>
+        <ng-container  *ngIf= "(this.pl.boardGame.state && (this.pl.boardGame.state) != 0) && this.pl.boardGame.secrets.secrets"  style="font-size: 6px;" >
+          , your secrets: {{this.pl.boardGame.secrets.secrets }}
         </ng-container>
       </td>
       <td *ngIf= "(this.pl.boardGame.state && (this.pl.boardGame.state) != 0)">
-        Others:
+        &nbsp;&nbsp; | Others:
       </td>
 
         <ng-container *ngFor="let ch of this.pl.boardGame.characters">
@@ -185,7 +192,7 @@
 
 
     <p></p>
-    <div *ngIf="(this.pl.boardGame.state && (this.pl.boardGame.state) == 3) && this.pl.boardGame.suggestedPlayers.includes(this.player) && (!this.pl.boardGame.PlayersVotedForCurrQuest || !this.pl.boardGame.PlayersVotedForCurrQuest.includes(this.player))" class='div-orw'>
+    <div *ngIf="(this.pl.boardGame.state && (this.pl.boardGame.state) == 3) && this.pl.boardGame.suggestedPlayers.includes(this.authService.name) && (!this.pl.boardGame.PlayersVotedForCurrQuest || !this.pl.boardGame.PlayersVotedForCurrQuest.includes(this.authService.name))" class='div-orw'>
       <mat-card  class='div-orw'>
         <mat-card-header>
           <mat-card-title>Vote For Quest!</mat-card-title>
@@ -221,6 +228,15 @@
               </mat-radio-button>
             </ng-container>
 
+          <ng-container>
+            <mat-radio-button type="radio" name="beast" value=3 display="none" id="pp4" [disabled]="!this.pl.boardGame.optionalVotes.includes('Beast')">
+              <label for="pp4">
+
+                <img src="./assets/Beast_vote.png" width="120px"/>
+              </label>
+            </mat-radio-button>
+          </ng-container>
+
           <p><button mat-button (click)="JourneyVote()">Vote!</button></p>
 
         </mat-radio-group>
@@ -251,9 +267,20 @@
               <mat-list>
                 <mat-list-item *ngFor="let player of this.pl.boardGame.players.all">
 
+                  <mat-icon matListIcon [ngStyle]="{'color': (this.pl.boardGame.state == 0 || this.pl.boardGame.secrets.character != 'Viviana') ? 'black' : this.pl.boardGame.secrets.goodplayers && this.pl.boardGame.secrets.goodplayers.includes(player.player) ? 'blue' : this.pl.boardGame.secrets.badplayers && this.pl.boardGame.secrets.badplayers.includes(player.player) ? 'red' : 'black'}">person</mat-icon>
 
-                  <mat-icon matListIcon>person</mat-icon>
+
+
                   <h3 matLine> {{player.player}} </h3>
+
+
+
+
+
+
+
+
+
 
                   <ng-container *ngIf="this.pl.boardGame && (this.pl.boardGame.suggesterVeto == player.player)">
                     <img src="./assets/hammer.png" width="15px"/>
@@ -309,14 +336,14 @@
 
                       </ng-container>
                       <ng-container *ngIf="quest.value.final == 1">
-                        <img src="./assets/fail.png" alt=' {{quest.value.failures}} " Fails, " {{quest.value.successes}} "Success, " {{quest.value.reversals}} "Reversal"'
-                             title=' {{quest.value.failures}} " Fails, " {{quest.value.successes}} "Success, " {{quest.value.reversals}} "Reversal"'/>
+                        <img src="./assets/fail.png" alt=' {{quest.value.failures}} Fails, {{quest.value.successes}} Success, {{quest.value.reversals}} Reversal, {{quest.value.beasts}} Beast'
+                             title=' {{quest.value.failures}}  Fails, " {{quest.value.successes}} Success, {{quest.value.reversals}} Reversal, {{quest.value.beasts}} Beast'/>
 
                       </ng-container>
 
                       <ng-container *ngIf="quest.value.final == 2">
-                        <img src="./assets/success.png" alt=' {{quest.value.failures}} " Fails, " {{quest.value.successes}} "Success, " {{quest.value.reversals}} "Reversal"'
-                             title=' {{quest.value.failures}} " Fails, " {{quest.value.successes}} "Success, " {{quest.value.reversals}} "Reversal"'/>
+                        <img src="./assets/success.png" alt=' {{quest.value.failures}}  Fails,  {{quest.value.successes}} Success,  {{quest.value.reversals}} Reversal, {{quest.value.beasts}} Beast'
+                             title=' {{quest.value.failures}}  Fails,  {{quest.value.successes}} Success,  {{quest.value.reversals}} Reversal, {{quest.value.beasts}} Beast'/>
 
                       </ng-container>
 
@@ -385,11 +412,18 @@
           <td class="xxssw">Reversal</td>
 
           <td class="xxssw">Succeses</td>
+
+          <td class="xxssw">Beasts</td>
         </tr>
 
         <ng-container *ngFor="let questItem of this.pl.boardGame.archive" >
           <tr class="xxssw" [hidden]='(this.pl.boardGame.current != (questItem.questId | round)) && !questItem.isSuggestionAccepted && this.filterqu[questItem.questId | round]'>
-            <td class="xxssw" (click)="FilterQuests(questItem.questId)" >{{questItem.questId}}</td>
+            <td class="xxssw" (click)="FilterQuests(questItem.questId)" >
+
+              <ng-container *ngIf="questItem.switch">
+                <img src="./assets/switch.png" width="20px"/>
+              </ng-container>
+              {{questItem.questId}}</td>
 
             <ng-container *ngFor="let player of this.pl.boardGame.players.all">
 
@@ -425,6 +459,12 @@
             <td class="xxssw">
               <div>
                 {{questItem.numberOfSuccesses}}
+              </div>
+            </td>
+
+            <td class="xxssw">
+              <div>
+                {{questItem.numberOfBeasts}}
               </div>
             </td>
           </tr></ng-container>

@@ -46,13 +46,33 @@ export class CreateComponent implements OnInit {
           { name: 'Sir-Kay', checked: false},
           { name: 'Seer', checked: false},
           { name: 'King-Arthur', checked: false},
-          { name: 'Puck', checked: false}
+          { name: 'Puck', checked: false},
+          { name: 'Viviana', checked: false},
+          { name: 'LoverY', checked: false},
+          { name: 'LoverB', checked: false},
+          { name: 'Prince-Claudin', checked: false},
+          { name: 'Nirlem', checked: false},
+          { name: 'Sir-Robin', checked: false},
+          { name: 'Pellinore', checked: false},
+          { name: 'Lot', checked: false},
+          {name: 'Cordana', checked: false},
+          {name: 'The-Coward', checked: false},
+          {name: 'Merlin-Apprentice', checked: false},
+          {name: 'Guinevere', checked: false},
+          {name: 'Lancelot-Good', checked: false}
       ];
         this.allBadChracters = [{ name: 'Morgana', checked: false},
         { name: 'Assassin', checked: false},
         { name: 'Mordred', checked: false},
         { name: 'Oberon', checked: false},
-        { name: 'Bad-Angel', checked: false}
+        { name: 'Bad-Angel', checked: false},
+          { name: 'King-Claudin', checked: false},
+          { name: 'Ginerva', checked: false},
+          { name: 'Polygraph', checked: false},
+          {name: 'The-Questing-Beast', checked: false},
+          {name: 'Accolon', checked: false},
+          {name: 'Gawain', checked: false},
+          {name: 'Lancelot-Bad', checked: false}
       ];
         this.BadChosen = 0;
         this.numOfPlayers = 0;
