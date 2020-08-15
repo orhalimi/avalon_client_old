@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {Component, OnInit, OnDestroy, ViewEncapsulation} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
@@ -23,7 +23,9 @@ export class MoviesComponent implements OnInit {
   public messages: Array<any>;
   public filterqu: Array<boolean>;
   public chatBox: string;
+  public errMsg: string;
   maxNo = false;
+  MurdermaxNo = false;
   amt = 0;
     public movies: any;
     public players: any;
@@ -42,9 +44,21 @@ export class MoviesComponent implements OnInit {
   public oldState: any;
   public panelOpenState: any;
   public showSuggestion: boolean;
+  public showPlayer: any;
   public results: any;
-    public constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private location: Location, public pl: PlayersService, private socket: SocketService, public authService: AuthService) {
+  public playersSuggestion: any;
+  public colorLabels: any;
+  public assassinKill: any;
+  public excaliburPick: any;
+  public ExcaliburAmt: any;
+  // tslint:disable-next-line:max-line-length
+  public constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private location: Location, public pl: PlayersService, private socket: SocketService, public authService: AuthService) {
         this.movies = [];
+        this.colorLabels = {
+      Merlin: 'Blue',
+      green: 'Green',
+      red: 'Red',
+    };
         this.players = [];
         this.vote = [];
         this.user = [];
@@ -52,15 +66,24 @@ export class MoviesComponent implements OnInit {
         this.votes = [];
         this.journeyVote = [];
         this.secrets = [];
+        this.maxNo = false;
+        this.MurdermaxNo = false;
+        this.amt = 0;
+        this.ExcaliburAmt = 0;
         this.board = [];
         this.suggestion = [];
         this.oldState = 0;
         this.results = [];
         this.myClass = 'xxssw';
+        this.showPlayer = '';
         this.showSuggestion = false;
         this.messages = [];
+        this.excaliburPick = [];
+        this.playersSuggestion = new Set();
         this.filterqu = [true, true, true, true, true, true, true, true, true];
         this.chatBox = '';
+        this.errMsg = '';
+        this.assassinKill = '';
         this.journeyVote.vote = -1;
         this.form = this.fb.group({
         username: ['', Validators.required],
@@ -73,13 +96,22 @@ export class MoviesComponent implements OnInit {
             this.refresh();
         });
         document.body.classList.add('bg-img');
-
+        this.amt = 0;
         this.refresh();
     }
+
+  // tslint:disable-next-line:use-lifecycle-interface
+  public ngOnDestroy() {
+    console.log('ChildComponent:OnDestroy');
+  }
 
   logout() {
       this.authService.logout();
       this.socket.close();
+  }
+
+  ShowPlayer(pl: string) {
+    this.showPlayer = pl;
   }
 
   login() {
@@ -91,14 +123,53 @@ export class MoviesComponent implements OnInit {
     }
   }
 
-  onChange(isChecked: boolean) {
+  onChange(player: string, isChecked: boolean) {
     if (isChecked) {
       this.amt++;
+      this.errMsg = '';
+      console.log('amt==', this.amt);
+      this.playersSuggestion.add(player);
+      this.socket.send('{"type":"suggestion_tmp", "content":' + JSON.stringify([...this.playersSuggestion]) + '}');
+      console.log('playersSuggestion==',  this.playersSuggestion);
     }
     else {
       this.amt--;
+      this.errMsg = '';
+      console.log('amt2==', this.amt);
+      this.playersSuggestion.delete(player);
+      this.socket.send('{"type":"suggestion_tmp", "content":' + JSON.stringify([...this.playersSuggestion]) + '}');
     }
+    console.log('amt3=', this.pl.boardGame.results[this.pl.boardGame.current].numofplayers);
     this.amt === this.pl.boardGame.results[this.pl.boardGame.current].numofplayers ? this.maxNo = true : this.maxNo = false;
+  }
+
+
+  onChangeExcaliburSuggest(player: string, isChecked: boolean) {
+    if (isChecked) {
+      this.ExcaliburAmt++;
+      this.errMsg = '';
+      this.excaliburPick = player;
+    }
+    else {
+      this.ExcaliburAmt--;
+      this.errMsg = '';
+    }
+  }
+
+  onChangeExcalibur(player: string, isChecked: boolean) {
+    if (isChecked) {
+      this.amt++;
+      this.errMsg = '';
+      console.log('ex==', this.amt);
+      this.playersSuggestion.add(player);
+    }
+    else {
+      this.amt--;
+      this.errMsg = '';
+      console.log('ex2==', this.amt);
+      this.playersSuggestion.delete(player);
+    }
+    this.amt <= 1 ? this.maxNo = true : this.maxNo = false;
   }
 
     private refresh() {
@@ -125,14 +196,54 @@ export class MoviesComponent implements OnInit {
   }
 
   public Suggest() {
+    if (this.ExcaliburAmt > 1) {
+      this.errMsg = 'Error! Only 1 player can get the excalibur.';
+      return;
+    }
+    if (this.ExcaliburAmt === 0) {
+      this.errMsg = 'Error! Please choose one player!';
+      return;
+    }
+    this.ExcaliburAmt = 0;
+    this.errMsg = '';
     this.amt = 0;
-    this.socket.send('{"type":"suggestion", "content":' + JSON.stringify(this.pl.boardGame.players) + '}');
+    // tslint:disable-next-line:max-line-length
+    this.socket.send('{"type":"suggestion", "content": {"players" : ' + JSON.stringify([...this.playersSuggestion]) + ', "excalibur": ' + JSON.stringify(this.excaliburPick) + '}}');
     /*this.http.post('http://localhost:12345/suggestion', JSON.stringify(this.players))
         .subscribe(result => {
           this.suggestion.voted == true;
         });*/
+    console.log(this.playersSuggestion);
+    this.playersSuggestion = new Set();
     this.suggestion.voted = true;
     this.maxNo = false;
+    this.excaliburPick = [];
+  }
+
+  public Pick() {
+    this.amt = 0;
+    // tslint:disable-next-line:max-line-length
+    this.socket.send('{"type":"excalibur_pick", "content":' + JSON.stringify([...this.playersSuggestion]) + '}');
+
+    console.log(this.playersSuggestion);
+    this.playersSuggestion = new Set();
+    this.suggestion.voted = true;
+    this.maxNo = false;
+    this.excaliburPick = [];
+  }
+
+  public Murder() {
+    this.amt = 0;
+    // tslint:disable-next-line:max-line-length
+    this.socket.send('{"type":"murder", "content": { "assassinkill": "' + this.assassinKill + '", "rest":' + JSON.stringify(this.pl.boardGame.players.all) + '}}');
+    this.MurdermaxNo = false;
+  }
+
+  public SirPick() {
+    this.amt = 0;
+    // tslint:disable-next-line:max-line-length
+    this.socket.send('{"type":"sir_pick", "content": { "pick": "' + this.assassinKill + '"}}');
+    this.assassinKill = '';
   }
 
   public reset() {

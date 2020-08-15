@@ -21,7 +21,6 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { SocketService } from './socket.service';
-import {IgxAvatarModule} from 'igniteui-angular';
 import { DialogComponent } from './dialog/dialog.component';
 
 import { TruncatePipe } from './limitpipe';
@@ -54,7 +53,6 @@ import { AuthGuardService } from './auth-guard.service';
         MatRadioModule,
         MatSliderModule,
         MatExpansionModule,
-        IgxAvatarModule,
         ReactiveFormsModule
     ],
   providers: [SocketService,

@@ -1,17 +1,4 @@
 
-.bg {
-  /* The image used */
-  background-image: url("../../assets/background2.jfif");
-
-  /* Full height */
-  height: 100%;
-
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 .signin-content {
   padding: 60px 1rem;
   background-color:transparent;
@@ -161,16 +148,178 @@ td {
   height:100px;
 }
 
+.serviceBoxww {
+  float:left;
+  width:75%;
+  height:100px;
+}
+
 .bla {
   opacity: 0.5;
   align-content:center;
   width:75%;
 }
 
+
+
+.wrap-collabsible {
+  margin-bottom: 1.2rem 0;
+}
+
+
+.lbl-toggle {
+  display: block;
+
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  text-align: center;
+
+  padding: 1rem;
+
+  color: #A77B0E;
+  background: #FAE042;
+
+  cursor: pointer;
+
+  border-radius: 7px;
+  transition: all 0.25s ease-out;
+}
+
+.lbl-toggle:hover {
+  color: #7C5A0B;
+}
+
+.lbl-toggle::before {
+  content: ' ';
+  display: inline-block;
+
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 5px solid currentColor;
+  vertical-align: middle;
+  margin-right: .7rem;
+  transform: translateY(-2px);
+
+  transition: transform .2s ease-out;
+}
+
+.toggle:checked + .lbl-toggle::before {
+  transform: rotate(90deg) translateX(-3px);
+}
+
+.collapsible-content {
+  max-height: 0px;
+  overflow: hidden;
+  transition: max-height .25s ease-in-out;
+}
+
+.toggle:checked + .lbl-toggle + .collapsible-content {
+  max-height: 100vh;
+}
+
+.toggle:checked + .lbl-toggle {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.collapsible-content .content-inner {
+  background: rgba(250, 224, 66, .2);
+  border-bottom: 1px solid rgba(250, 224, 66, .45);
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+  padding: .5rem 1rem;
+}
+
+/* The sidebar menu */
+.sidebar {
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0;
+  left: 0;
+  background-color: #111; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+}
+
+/* The sidebar links */
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+  transition: margin-left .5s; /* If you want a transition effect */
+  padding: 20px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+
+.mat-list .mat-list-item .mat-list-avatar.img-preview { height: 50px; width: 50px;  }
+
+.mat-card-title {
+  font-size: 17px;
+
+}
+mat-expansion-panel-header {
+  height: auto!important;
+  vertical-align: center;
+}
+.right-aligned-header > .mat-content {
+  justify-content: space-between;
+}
+
+.mat-content > mat-panel-title, .mat-content > mat-panel-description {
+  flex: 0 0 auto;
+}
+mat-panel-title {
+  height: auto!important;
+
+}
+.mat-content {
+  align-items: center;
+}
+mat-form-field {
+  margin-right: 12px;
+}
 .bla2 {
   opacity: 0.5;
   align-content:center;
   width:100%;
+}
+
+.jjyy {
+  background-color: black;
+  width:300px;
+  color: #f0f0f0;
 }
 
 .jj {
@@ -198,6 +347,22 @@ td {
   font-size: 10px;
 }
 
+mat-expansion-panel-header {
+  height: auto!important;
+}
+.mat-expansion-panel-header.mat-expanded {
+  height: 4rem
+}
+.avatar3 {
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.dfre {
+  display: flex;
+  align-items:center;
+}
 .dddww2 {
   opacity: 1;
   align-content:center;
@@ -209,6 +374,30 @@ td {
   font-color: white;
 }
 
+a.button1{
+   display:inline-block;
+   padding:0.35em 1.2em;
+   border:0.1em solid #FFFFFF;
+   margin:0 0.3em 0.3em 0;
+   border-radius:0.12em;
+   box-sizing: border-box;
+   text-decoration:none;
+   font-family:'Roboto',sans-serif;
+   font-weight:300;
+   color:#FFFFFF;
+   text-align:center;
+   transition: all 0.2s;
+}
+a.button1:hover{
+   color:#000000;
+   background-color:#FFFFFF;
+}
+@media all and (max-width:30em) {
+   a.button1 {
+      display: block;
+      margin: 0.4em auto;
+  }
+}
 .dddww {
   opacity: 1;
   align-content:center;
@@ -247,35 +436,12 @@ td {
   alignment: center;
 }
 
-.circular--square {
-  height: 60px;
-  width: 60px;
-  border-top-left-radius: 50% 50%;
-  border-top-right-radius: 50% 50%;
-  border-bottom-right-radius: 50% 50%;
-  border-bottom-left-radius: 50% 50%;
-}
 
 .image{
   height: 150px; /* adjust as needed */
   object-fit: contain;
 }
 
-
-.eeee {
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  vertical-align:middle;
-  align-content: center;
-  opacity: 0.7;
-  background-color: darkgray;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  vertical-align:middle;
-  align-content: center;
-}
 
 .div-or {
   justify-content: center;
@@ -285,9 +451,27 @@ td {
   align-content: center;
 }
 
+.div-orwgood {
+  opacity: 1;
+  background-color: blue;
+  align-content: center;
+}
+
+.div-orwbad {
+  opacity: 1;
+  background-color: red;
+  align-content: center;
+}
+
+.div-orwga {
+  opacity: 1;
+  background-color: lightgrey;
+  align-content: center;
+}
+
 .div-orw {
   opacity: 1;
-  background-color: greenyellow;
+  background-color: yellowgreen;
   align-content: center;
 }
 
@@ -379,13 +563,21 @@ td {
   margin-bottom: 72px;
 }
 
+.MerlinA {
+  visibility: hidden;
+}
+.MerlinA:hover  {
+  visibility: visible;
+}
+
+
 .Viviana {
   background-image: url('/assets/Viviana.png');
   background-size: cover;
 }
 
-.LoverY {
-  background-image: url('/assets/LoverY.png');
+.Tristan {
+  background-image: url('/assets/Tristan.png');
   background-size: cover;
 }
 
@@ -404,8 +596,8 @@ td {
   background-size: cover;
 }
 
-.LoverB {
-  background-image: url('/assets/LoverB.png');
+.Iseult {
+  background-image: url('/assets/Iseult.png');
   background-size: cover;
 }
 
@@ -540,6 +732,11 @@ td {
   background-size: cover;
 }
 
+.Queen-Mab {
+  background-image: url('/assets/Queen-Mab.png');
+  background-size: cover;
+}
+
 .red {
   background-color: red;
 }
@@ -557,16 +754,17 @@ td {
 }
 
 .xxss {
-  border: 1px solid grey;
+  border: none;
   padding: 5px;
-  opacity: 0.7;
-  background-color: gainsboro;
+  opacity: 0.6;
+  background-color: black;
   alignment: center;
   align-content: center;
   margin-left:auto;
   margin-right:auto;
   align: center;
   text-align: center;
+  color: #f0f0f0;
 }
 
 .xxssw {
@@ -594,46 +792,15 @@ td {
 .fail{background-image:url('/assets/Fail_vote.png')}
 .reversal{background-image:url('/assets/Reversal_vote.png')}
 
-.cc-selector input:active +.drinkcard-cc{opacity: .9;}
-.cc-selector input:checked +.drinkcard-cc{
-  -webkit-filter: none;
-  -moz-filter: none;
-  filter: none;
+.Good {
+  color:blue;
 }
-.drinkcard-cc{
-  cursor:pointer;
-  background-size:contain;
-  background-repeat:no-repeat;
-  display:inline-block;
-  width:100px;height:70px;
-  -webkit-transition: all 100ms ease-in;
-  -moz-transition: all 100ms ease-in;
-  transition: all 100ms ease-in;
-  -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
-  -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
-  filter: brightness(1.8) grayscale(1) opacity(.7);
+.Bad{
+  color:red;
 }
-.drinkcard-cc:hover{
-  -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
-  -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
-  filter: brightness(1.2) grayscale(.5) opacity(.9);
+.Neutral {
+  color:dimgray;
 }
-
-
-.inputvote{
-  cursor:pointer;
-  background-size:auto;
-  background-repeat:no-repeat;
-  display:inline-block;
-  width:70px;height:100px;
-  -webkit-transition: all 100ms ease-in;
-  -moz-transition: all 100ms ease-in;
-  transition: all 100ms ease-in;
-  -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
-  -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
-  filter: brightness(1.2) grayscale(.5) opacity(.9);
-}
-
 
 
 /* Extras */

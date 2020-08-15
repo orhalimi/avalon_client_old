@@ -1,14 +1,49 @@
 .app-toolbar-filler {
     flex: 1 1 auto;
 }
-
+mat-checkbox ::ng-deep .mat-checkbox-inner-container {width: 20px;height: 20px;}
 .createapp {
   alignment: center;
   margin:0 auto;
 }
+.div-or2 {
+  opacity: 0.7;
+  background-color: gainsboro;
+  align-content: center;
+  alignment: center;
+  margin:0 auto;
+  width:100%;
+  font-size: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  justify-content: center;
+  text-align:center;
+}
 .div-or {
   opacity: 0.7;
-  background-color: #f0f0f0;
+  background-color: lightgrey;
+  align-content: center;
+  alignment: center;
+  margin:0 auto;
+  width:100%;
+  font-size: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  justify-content: center;
+  text-align:center;
+}
+.my-class{
+  width: auto!important;
+  min-width: unset!important;
+  background-color: lawngreen;
+  font-size: 24px;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  justify-content: center;
+  text-align:center;
 }
 
 .headline {
@@ -136,13 +171,13 @@
   background-size: cover;
 }
 
-.LoverY {
-  background-image: url('/assets/LoverY.png');
+.Tristan {
+  background-image: url('/assets/Tristan.png');
   background-size: cover;
 }
 
-.LoverB {
-  background-image: url('/assets/LoverB.png');
+.Iseult {
+  background-image: url('/assets/Iseult.png');
   background-size: cover;
 }
 
@@ -209,5 +244,10 @@
 
 .Bad-Angel {
   background-image: url('/assets/Bad-Angel.png');
+  background-size: cover;
+}
+
+.Queen-Mab {
+  background-image: url('/assets/Queen-Mab.png');
   background-size: cover;
 }

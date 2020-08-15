@@ -26,6 +26,10 @@ export class CreateComponent implements OnInit {
   public maxGoods: any;
   public numOfPlayers: any;
   public chosen: any;
+  public assassin: any;
+  public numOfAssassin: any;
+  public assassinChosen: any;
+  public excalibur: any;
     public constructor(private location: Location, private router: Router, private http: HttpClient, public pl: PlayersService, private socket: SocketService) {
         this.movie = {
           good: {
@@ -48,8 +52,8 @@ export class CreateComponent implements OnInit {
           { name: 'King-Arthur', checked: false},
           { name: 'Puck', checked: false},
           { name: 'Viviana', checked: false},
-          { name: 'LoverY', checked: false},
-          { name: 'LoverB', checked: false},
+          { name: 'Tristan', checked: false},
+          { name: 'Iseult', checked: false},
           { name: 'Prince-Claudin', checked: false},
           { name: 'Nirlem', checked: false},
           { name: 'Sir-Robin', checked: false},
@@ -61,25 +65,30 @@ export class CreateComponent implements OnInit {
           {name: 'Guinevere', checked: false},
           {name: 'Lancelot-Good', checked: false}
       ];
-        this.allBadChracters = [{ name: 'Morgana', checked: false},
-        { name: 'Assassin', checked: false},
-        { name: 'Mordred', checked: false},
-        { name: 'Oberon', checked: false},
-        { name: 'Bad-Angel', checked: false},
-          { name: 'King-Claudin', checked: false},
-          { name: 'Ginerva', checked: false},
-          { name: 'Polygraph', checked: false},
-          {name: 'The-Questing-Beast', checked: false},
-          {name: 'Accolon', checked: false},
-          {name: 'Gawain', checked: false},
-          {name: 'Lancelot-Bad', checked: false}
+        this.allBadChracters = [{ name: 'Morgana', checked: false, assassin: false},
+        { name: 'Assassin', checked: false, assassin: false},
+        { name: 'Mordred', checked: false, assassin: false},
+        { name: 'Oberon', checked: false, assassin: false},
+        { name: 'Bad-Angel', checked: false, assassin: false},
+          { name: 'King-Claudin', checked: false, assassin: false},
+          { name: 'Ginerva', checked: false, assassin: false},
+          { name: 'Polygraph', checked: false, assassin: false},
+          {name: 'The-Questing-Beast', checked: false, assassin: false},
+          {name: 'Accolon', checked: false, assassin: false},
+          {name: 'Gawain', checked: false, assassin: false},
+          {name: 'Lancelot-Bad', checked: false, assassin: false},
+          {name: 'Queen-Mab', checked: false, assassin: false},
       ];
         this.BadChosen = 0;
         this.numOfPlayers = 0;
         this.amtBad = 0;
         this.amtGood = 0;
         this.amt = 0;
+        this.assassin = '';
+        this.assassinChosen = false;
+        this.numOfAssassin = 0;
         this.numOfPlayersToBads = [ -1, 0, 1, -1, 1, 2, 2, 3, 3, 3, 4, 4, 5, 5];
+        this.excalibur = false;
     }
 
     public ngOnInit() {
@@ -96,13 +105,25 @@ export class CreateComponent implements OnInit {
       this.amt--;
       this.amtGood--;
     }
-    this.amt === this.pl.getNumOfPlayers() ? this.maxChracters = true : this.maxChracters = false;
+    this.amt === this.pl.boardGame.players.total ? this.maxChracters = true : this.maxChracters = false;
     // tslint:disable-next-line:max-line-length
     this.amtGood === (this.pl.boardGame.players.total - this.numOfPlayersToBads[this.pl.boardGame.players.total]) ? this.maxGoods = true : this.maxGoods = false;
   }
 
-  onChangeBad(isChecked: boolean) {
+  onChangeAssassin(isChecked: boolean) {
+    if (isChecked) {
+      this.numOfAssassin++;
+    }
+    else {
+      this.numOfAssassin--;
+    }
+  }
+
+  onChangeBad(ch: any, isChecked: boolean) {
     this.numOfPlayers = this.pl.getNumOfPlayers();
+    if (ch === 'Assassin') {
+      this.assassinChosen = isChecked;
+    }
     if (isChecked) {
       this.amtBad++;
       this.amt++;
@@ -116,12 +137,17 @@ export class CreateComponent implements OnInit {
   }
 
     public save() {
+      if (!this.assassinChosen && this.numOfAssassin === 0) {
+        return;
+      }
       this.chosen = [ ...this.allGoodChracters, ...this.allBadChracters];
-      this.socket.send('{"type":"start_game", "content":' + JSON.stringify(this.chosen) + '}');
+      // tslint:disable-next-line:max-line-length
+      this.socket.send('{"type":"start_game", "content": {"characters" : ' + JSON.stringify(this.chosen) + ' , "excalibur": ' + JSON.stringify(this.excalibur) + '}}');
       /*this.http.post('http://localhost:12345/start-game', JSON.stringify(this.chosen))
                 .subscribe(result => {
                     this.location.back();
                 });*/
+      this.excalibur = false;
       this.location.back();
     }
 

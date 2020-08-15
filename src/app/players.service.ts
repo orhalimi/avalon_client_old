@@ -30,9 +30,10 @@ export class PlayersService {
     this.oldState = 0;
     this.socket.getEventListener().subscribe(event => {
       if (event.type === 'message') {
-        if (event.data.ty && event.data.ty === 'bla') {
+        if (event.data.ty && event.data.ty === 'bla' && this.boardGame.state === 0) {
           if (event.data.players) {
             // this.bla = JSON.parse(data);
+            console.log('bug');
             this.boardGame.players = event.data.players;
           }
         } else {
@@ -40,7 +41,7 @@ export class PlayersService {
           if (this.isJson(data)) {
             // this.bla = JSON.parse(data);
             this.boardGame = JSON.parse(data);
-            if (this.oldState !== 2 && this.boardGame.state === 2) {
+            if (this.oldState !== 3 && this.boardGame.state === 3) {
               this.showSuggestion = true;
             }
             this.oldState = this.boardGame.state;
@@ -60,6 +61,7 @@ export class PlayersService {
       if (event.type === 'open') {
         this.messages.push('/The socket connection has been established');
         this.socket.send('{"type":"refresh", "content":""}');
+        console.log('bla');
       }
     });
   }
