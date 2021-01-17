@@ -51,6 +51,8 @@ export class MoviesComponent implements OnInit {
   public assassinKill: any;
   public excaliburPick: any;
   public ExcaliburAmt: any;
+  public ladyPick: any;
+  public ladyResponse: any;
   // tslint:disable-next-line:max-line-length
   public constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private location: Location, public pl: PlayersService, private socket: SocketService, public authService: AuthService) {
         this.movies = [];
@@ -84,6 +86,8 @@ export class MoviesComponent implements OnInit {
         this.chatBox = '';
         this.errMsg = '';
         this.assassinKill = '';
+        this.ladyPick = '';
+        this.ladyResponse = 0;
         this.journeyVote.vote = -1;
         this.form = this.fb.group({
         username: ['', Validators.required],
@@ -160,7 +164,7 @@ export class MoviesComponent implements OnInit {
     if (isChecked) {
       this.amt++;
       this.errMsg = '';
-      console.log('ex==', this.amt);
+      console.log('ex_or==', this.amt);
       this.playersSuggestion.add(player);
     }
     else {
@@ -169,7 +173,7 @@ export class MoviesComponent implements OnInit {
       console.log('ex2==', this.amt);
       this.playersSuggestion.delete(player);
     }
-    this.amt <= 1 ? this.maxNo = true : this.maxNo = false;
+    this.amt == 1 ? this.maxNo = true : this.maxNo = false;
   }
 
     private refresh() {
@@ -195,16 +199,56 @@ export class MoviesComponent implements OnInit {
       this.filterqu[newIndex] = !this.filterqu[newIndex];
   }
 
+  public LadySuggest(suggestion: string) {
+    // tslint:disable-next-line:max-line-length
+    this.socket.send('{"type":"lady_suggest", "content": "' + suggestion + '"}');
+    console.log(suggestion);
+    this.ladyPick = '';
+  }
+
+  public LadyResponse(response: string) {
+    // tslint:disable-next-line:max-line-length
+  if (response === 'Good') {
+    this.ladyResponse = 1;
+  } else {
+    this.ladyResponse = 0;
+  }
+
+  this.socket.send('{"type":"lady_response", "content": '
+      + JSON.stringify(this.ladyResponse) + '}');
+  console.log(this.ladyResponse);
+  this.ladyPick = '';
+  }
+
+
+  public LadyPublish(publish: string) {
+    // tslint:disable-next-line:max-line-length
+    if (publish === 'Good') {
+      this.ladyResponse = 1;
+    } else {
+      this.ladyResponse = 0;
+    }
+
+    this.socket.send('{"type":"lady_publish_response", "content": '
+      + JSON.stringify(this.ladyResponse) + '}');
+    console.log(this.ladyResponse);
+    this.ladyPick = '';
+    this.ladyResponse = 0;
+  }
+
+
   public Suggest() {
-    if (this.ExcaliburAmt > 1) {
-      this.errMsg = 'Error! Only 1 player can get the excalibur.';
-      return;
+    if (this.pl.boardGame.excalibur) {
+      if (this.ExcaliburAmt > 1) {
+        this.errMsg = 'Error! Only 1 player can get the excalibur.';
+        return;
+      }
+      if (this.ExcaliburAmt === 0) {
+        this.errMsg = 'Error! Please choose one player!';
+        return;
+      }
+      this.ExcaliburAmt = 0;
     }
-    if (this.ExcaliburAmt === 0) {
-      this.errMsg = 'Error! Please choose one player!';
-      return;
-    }
-    this.ExcaliburAmt = 0;
     this.errMsg = '';
     this.amt = 0;
     // tslint:disable-next-line:max-line-length

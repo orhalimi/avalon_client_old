@@ -30,6 +30,7 @@ export class CreateComponent implements OnInit {
   public numOfAssassin: any;
   public assassinChosen: any;
   public excalibur: any;
+  public lady: any;
     public constructor(private location: Location, private router: Router, private http: HttpClient, public pl: PlayersService, private socket: SocketService) {
         this.movie = {
           good: {
@@ -63,7 +64,22 @@ export class CreateComponent implements OnInit {
           {name: 'The-Coward', checked: false},
           {name: 'Merlin-Apprentice', checked: false},
           {name: 'Guinevere', checked: false},
-          {name: 'Lancelot-Good', checked: false}
+          {name: 'Lancelot-Good', checked: false},
+
+         // { name: 'Galaad', checked: false},
+          { name: 'Raven', checked: false},
+          { name: 'Balain', checked: false},
+          {name: 'Sir-Gawain', checked: false},
+          // {name: 'Jarvan', checked: false},
+          {name: 'Stray', checked: false},
+          {name: 'Ector', checked: false},
+          {name: 'Elaine', checked: false},
+          { name: 'Blanchefleur', checked: false},
+          {name: 'Tom-Thumb', checked: false},
+          {name: 'Gornemant', checked: false},
+          {name: 'Dagonet', checked: false},
+          {name: 'Meliagant', checked: false},
+          {name: 'Bors', checked: false}
       ];
         this.allBadChracters = [{ name: 'Morgana', checked: false, assassin: false},
         { name: 'Assassin', checked: false, assassin: false},
@@ -78,6 +94,12 @@ export class CreateComponent implements OnInit {
           {name: 'Gawain', checked: false, assassin: false},
           {name: 'Lancelot-Bad', checked: false, assassin: false},
           {name: 'Queen-Mab', checked: false, assassin: false},
+          {name: 'Balin', checked: false, assassin: false},
+          {name: 'Maeve', checked: false, assassin: false},
+          {name: 'Agravain', checked: false, assassin: false},
+          {name: 'Nerzhul', checked: false, assassin: false},
+          {name: 'Mora', checked: false, assassin: false},
+          {name: 'Melwas', checked: false, assassin: false}
       ];
         this.BadChosen = 0;
         this.numOfPlayers = 0;
@@ -89,6 +111,7 @@ export class CreateComponent implements OnInit {
         this.numOfAssassin = 0;
         this.numOfPlayersToBads = [ -1, 0, 1, -1, 1, 2, 2, 3, 3, 3, 4, 4, 5, 5];
         this.excalibur = false;
+        this.lady = false;
     }
 
     public ngOnInit() {
@@ -142,7 +165,7 @@ export class CreateComponent implements OnInit {
       }
       this.chosen = [ ...this.allGoodChracters, ...this.allBadChracters];
       // tslint:disable-next-line:max-line-length
-      this.socket.send('{"type":"start_game", "content": {"characters" : ' + JSON.stringify(this.chosen) + ' , "excalibur": ' + JSON.stringify(this.excalibur) + '}}');
+      this.socket.send('{"type":"start_game", "content": {"characters" : ' + JSON.stringify(this.chosen) + ' , "excalibur": ' + JSON.stringify(this.excalibur) + ' , "lady": ' + JSON.stringify(this.lady) + '}}');
       /*this.http.post('http://localhost:12345/start-game', JSON.stringify(this.chosen))
                 .subscribe(result => {
                     this.location.back();
