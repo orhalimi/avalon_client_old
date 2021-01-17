@@ -1,27 +1,4 @@
 
-.maincircle{
-  border: 2px dotted #000000;
-  border-radius: 50%;
-  width: 500px;
-  height: 500px;
-}
-.cirlce1{
-  position: absolute;
-  height: 50px;
-  width: 50px;
-  border: 2px dotted #000000;
-  border-radius: 50%;
-  top: 50%;
-}
-.cirlce2{
-  position: absolute;
-  height: 50px;
-  width: 50px;
-  border: 2px dotted #000000;
-  border-radius: 50%;
-  left: 50%;
-}
-
 .signin-content {
   padding: 60px 1rem;
   background-color:transparent;
