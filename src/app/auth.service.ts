@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 export class AuthService {
 
   public data: any;
-  API_URL = 'http://localhost:12345'; // 54.93.252.148
+  API_URL = 'http://3.121.195.232:12345'; //3.121.195.232 52.57.227.87
   TOKEN_KEY = 'token';
 
 

@@ -14,7 +14,7 @@ export class SocketService {
   }
 
   openSocket() {
-    this.socket = new WebSocket('ws://localhost:12345/ws?token=' + this.authService.token); //localhost
+    this.socket = new WebSocket('ws://3.121.195.232:12345/ws?token=' + this.authService.token); //localhost
     this.socket.onopen = event => {
       this.listener.emit({type: 'open', data: event});
     }
