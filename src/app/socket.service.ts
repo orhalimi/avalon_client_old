@@ -8,13 +8,17 @@ export class SocketService {
   private listener: EventEmitter<any> = new EventEmitter();
 
   public constructor(private authService: AuthService) {
-    if (this.authService.isAuthenticated) {
-      this.openSocket();
-    }
+    this.authService.authenticatedSubject.subscribe(isAuthenticated => {
+      if (isAuthenticated) {
+        this.openSocket();
+      }
+    })
   }
 
+
   openSocket() {
-    this.socket = new WebSocket('ws://3.121.195.232:12345/ws?token=' + this.authService.token); //localhost
+    // this.socket = new WebSocket('ws://3.121.195.232:12345/ws?token=' + this.authService.token); //localhost
+    this.socket = new WebSocket('ws://localhost:12345/ws?token=' + this.authService.token); //localhost
     this.socket.onopen = event => {
       this.listener.emit({type: 'open', data: event});
     }
