@@ -28,6 +28,8 @@ import {RoundPipe} from './rountpipe';
 import {AuthService} from './auth.service';
 import { AuthInterceptorService } from './auth-interceptor.service';
 import { AuthGuardService } from './auth-guard.service';
+import { PlayersTableComponent } from './players-table/players-table.component';
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import { AuthGuardService } from './auth-guard.service';
     VotesComponent,
     DialogComponent,
     TruncatePipe,
-    RoundPipe
+    RoundPipe,
+    PlayersTableComponent
   ],
     imports: [
         BrowserModule,
@@ -53,7 +56,8 @@ import { AuthGuardService } from './auth-guard.service';
         MatRadioModule,
         MatSliderModule,
         MatExpansionModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+      FlexLayoutModule
     ],
   providers: [SocketService,
     AuthService,

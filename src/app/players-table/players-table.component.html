@@ -1,0 +1,7 @@
+<div *ngIf="board" fxLayout="row" fxLayoutAlign="center center">
+  <div class="circle">
+    <div *ngFor="let player of board.players.all">
+      {{player.player}}
+    </div>
+  </div>
+</div>
