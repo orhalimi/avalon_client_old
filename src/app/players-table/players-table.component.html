@@ -1,6 +1,6 @@
 <div *ngIf="board" fxLayout="row" fxLayoutAlign="center center">
   <div class="circle">
-    <div *ngFor="let player of board.players.all">
+    <div *ngFor="let player of board.players.all; let i = index" class="player-circle" [ngStyle]="position[i]">
       {{player.player}}
     </div>
   </div>
