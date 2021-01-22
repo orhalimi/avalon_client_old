@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {PlayersService} from "../players.service";
 import {BoardGameModel} from "../model/board-game.model";
+import {AuthService} from "../auth.service";
 
 @Component({
   selector: 'app-players-table',
@@ -15,14 +16,14 @@ export class PlayersTableComponent implements OnInit {
     top: string
   }[] = [];
 
-  constructor(private playerService: PlayersService) {
+  constructor(private playerService: PlayersService, public authService: AuthService) {
     this.playerService.boardSubject.subscribe((board: BoardGameModel) => {
       console.log("new board", board);
       this.board = board;
       if (!this.board) return;
       this.position = [];
       const angle = 360 / this.board.players.all.length;
-      const radius = 200;
+      const radius = 300;
       let counter = 0;
 
       for (const player of this.board.players.all) {

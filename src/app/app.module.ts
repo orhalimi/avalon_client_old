@@ -30,6 +30,7 @@ import { AuthInterceptorService } from './auth-interceptor.service';
 import { AuthGuardService } from './auth-guard.service';
 import { PlayersTableComponent } from './players-table/players-table.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
+import { QuestsOverviewComponent } from './quests-overview/quests-overview.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import {FlexLayoutModule} from "@angular/flex-layout";
     DialogComponent,
     TruncatePipe,
     RoundPipe,
-    PlayersTableComponent
+    PlayersTableComponent,
+    QuestsOverviewComponent
   ],
     imports: [
         BrowserModule,
