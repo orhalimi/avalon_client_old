@@ -1,6 +1,15 @@
-<div *ngIf="board" fxLayout="row" fxLayoutAlign="center center" style="margin-top: 50px;">
+<div *ngIf="board" fxLayout="row" fxLayoutAlign="center center" style="margin-top: 80px;">
   <div class="circle">
+    <div *ngFor="let player of board.players.all; let i = index" class="player-circle-icons" [ngStyle]="iconsPosition[i]">
+      <mat-icon [ngClass]="{'on': board.suggestedPlayers && board.suggestedPlayers.includes(player.player) && (board.state == 4 || board.state == 3)}">security</mat-icon>
+      <mat-icon svgIcon="sword"></mat-icon>
+      <mat-icon svgIcon="lady"></mat-icon>
+    </div>
     <div *ngFor="let player of board.players.all; let i = index" class="player-circle" [ngStyle]="position[i]">
+      <div *ngIf="board.suggesterVeto == player.player">
+        <img src="./assets/hammer.png" class="veto-hammer" />
+      </div>
+
       <div *ngIf="player.player === authService.name">
         <div mat-card-avatar [class]="board.secrets.character"></div>
       </div>

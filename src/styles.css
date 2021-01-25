@@ -285,3 +285,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   background-image: url('/assets/Meliagant.png');
   background-size: cover;
 }
+mat-icon.on {
+  color: white;
+}
