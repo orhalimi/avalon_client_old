@@ -556,112 +556,117 @@
 
 
 
+    <div fxLayout="row" fxLayoutAlign="center center">
+
     <app-players-table></app-players-table>
 
-    <div id="serviceBox" *ngIf="this.pl.boardGame.players && this.pl.boardGame.players.total > 0">
-      <div class="serviceBox1">
-        <div  class="bla">
-          <mat-card class=''>
-            <mat-card-title>Active Players ({{ this.pl.boardGame.players.total }})</mat-card-title>
-            <mat-card-content>
+<!--    <div id="serviceBox" *ngIf="this.pl.boardGame.players && this.pl.boardGame.players.total > 0">-->
+<!--      <div class="serviceBox1">-->
+<!--        <div  class="bla">-->
+<!--          <mat-card class=''>-->
+<!--            <mat-card-title>Active Players ({{ this.pl.boardGame.players.total }})</mat-card-title>-->
+<!--            <mat-card-content>-->
 
 
-              <mat-list>
-              <mat-list-item *ngFor="let player of this.pl.boardGame.players.all">
+<!--              <mat-list>-->
+<!--              <mat-list-item *ngFor="let player of this.pl.boardGame.players.all">-->
 
-<table>
-  <tr>
-    <td>
-      <ng-container *ngIf="this.pl.boardGame.state && (this.pl.boardGame.state==6 || this.pl.boardGame.state==7) && this.pl.boardGame.playerToCharacters != null && this.pl.boardGame.playerToCharacters[player.player]; else rrr">
+<!--<table>-->
+<!--  <tr>-->
+<!--    <td>-->
+<!--      <ng-container *ngIf="this.pl.boardGame.state && (this.pl.boardGame.state==6 || this.pl.boardGame.state==7) && this.pl.boardGame.playerToCharacters != null && this.pl.boardGame.playerToCharacters[player.player]; else rrr">-->
 
-        <img matListAvatar src="./assets/{{this.pl.boardGame.playerToCharacters[player.player].ch}}.png" title="Photo of a Shiba Inu" [class.img-preview]="true">
+<!--        <img matListAvatar src="./assets/{{this.pl.boardGame.playerToCharacters[player.player].ch}}.png" title="Photo of a Shiba Inu" [class.img-preview]="true">-->
 
-      </ng-container>
-
-
-      <ng-template #rrr >
-
-        <ng-container *ngIf="this.pl.boardGame.secrets.goodplayers && this.pl.boardGame.secrets.goodplayers.includes(player.player); else vivianred">
-          <img matListAvatar src="./assets/genericblue.png" [class.img-preview]="true">
-        </ng-container>
-
-        <ng-template #vivianred >
-          <ng-container *ngIf="this.pl.boardGame.secrets.badplayers && this.pl.boardGame.secrets.badplayers.includes(player.player); else allothers">
-            <img md-list-icon matListAvatar src="./assets/genericred.png" [class.img-preview]="true">
-          </ng-container>
-
-          <ng-template #allothers >
-            <img md-list-icon matListAvatar src="./assets/generic.png"  [class.img-preview]="true">
-          </ng-template>
-        </ng-template>
+<!--      </ng-container>-->
 
 
+<!--      <ng-template #rrr >-->
 
+<!--        <ng-container *ngIf="this.pl.boardGame.secrets.goodplayers && this.pl.boardGame.secrets.goodplayers.includes(player.player); else vivianred">-->
+<!--          <img matListAvatar src="./assets/genericblue.png" [class.img-preview]="true">-->
+<!--        </ng-container>-->
 
-      </ng-template>
+<!--        <ng-template #vivianred >-->
+<!--          <ng-container *ngIf="this.pl.boardGame.secrets.badplayers && this.pl.boardGame.secrets.badplayers.includes(player.player); else allothers">-->
+<!--            <img md-list-icon matListAvatar src="./assets/genericred.png" [class.img-preview]="true">-->
+<!--          </ng-container>-->
 
-
-    </td>
-
-    <td style="vertical-align: middle">
-
-       {{player.player}}
-
-
-    </td>
-
-
-    <td>
-
-      <ng-container *ngIf="this.pl.boardGame.state > 0 && this.pl.boardGame.playerToCharacters && this.pl.boardGame.playerToCharacters[player.player] && this.pl.boardGame.playerToCharacters[player.player].isKilled">
-        <img src="./assets/gun.png" width="40px"/>
-      </ng-container>
-      <ng-container *ngIf="this.pl.boardGame && (this.pl.boardGame.suggesterVeto == player.player)">
-        <img src="./assets/hammer.png" width="15px"/>
-      </ng-container>
-      <mat-icon matListIcon [ngStyle]="{'color':'blue'}" *ngIf="this.pl.boardGame && (this.pl.boardGame.state ==2 || this.pl.boardGame.state ==4) &&  this.pl.boardGame.PlayersVotedYesForSuggestion && this.pl.boardGame.PlayersVotedYesForSuggestion.includes(player.player); else downn">thumb_up</mat-icon>
-      <ng-template #downn>
-        <mat-icon matListIcon [ngStyle]="{'color':'red'}" *ngIf="this.pl.boardGame && (this.pl.boardGame.state ==2 || this.pl.boardGame.state ==4) && this.pl.boardGame.PlayersVotedNoForSuggestion && this.pl.boardGame.PlayersVotedNoForSuggestion.includes(player.player); else typing">thumb_down</mat-icon>
-      </ng-template>
-      <ng-template #typing>
-        <mat-icon matListIcon *ngIf="this.pl.boardGame.state == 3 && ((!this.pl.boardGame.PlayersVotedYesForSuggestion || !this.pl.boardGame.PlayersVotedYesForSuggestion.includes(player.player)) && (!this.pl.boardGame.PlayersVotedNoForSuggestion || !this.pl.boardGame.PlayersVotedNoForSuggestion.includes(player.player))); else done">textsms</mat-icon>
-      </ng-template>
-      <ng-template #done>
-        <mat-icon matListIcon *ngIf="this.pl.boardGame.state == 3 ">done</mat-icon>
-      </ng-template>
-      <mat-icon matListIcon [ngStyle]="{'color':'black'}" *ngIf="this.pl.boardGame && this.pl.boardGame.suggestedPlayers && this.pl.boardGame.suggestedPlayers.includes(player.player) && (this.pl.boardGame.state == 4 || this.pl.boardGame.state == 3)">directions_walk</mat-icon>
-
-
-    </td>
-  </tr>
-</table>
+<!--          <ng-template #allothers >-->
+<!--            <img md-list-icon matListAvatar src="./assets/generic.png"  [class.img-preview]="true">-->
+<!--          </ng-template>-->
+<!--        </ng-template>-->
 
 
 
+
+<!--      </ng-template>-->
+
+
+<!--    </td>-->
+
+<!--    <td style="vertical-align: middle">-->
+
+<!--       {{player.player}}-->
+
+
+<!--    </td>-->
+
+
+<!--    <td>-->
+
+<!--      <ng-container *ngIf="this.pl.boardGame.state > 0 && this.pl.boardGame.playerToCharacters && this.pl.boardGame.playerToCharacters[player.player] && this.pl.boardGame.playerToCharacters[player.player].isKilled">-->
+<!--        <img src="./assets/gun.png" width="40px"/>-->
+<!--      </ng-container>-->
+<!--      <ng-container *ngIf="this.pl.boardGame && (this.pl.boardGame.suggesterVeto == player.player)">-->
+<!--        <img src="./assets/hammer.png" width="15px"/>-->
+<!--      </ng-container>-->
+<!--      <mat-icon matListIcon [ngStyle]="{'color':'blue'}" *ngIf="this.pl.boardGame && (this.pl.boardGame.state ==2 || this.pl.boardGame.state ==4) &&  this.pl.boardGame.PlayersVotedYesForSuggestion && this.pl.boardGame.PlayersVotedYesForSuggestion.includes(player.player); else downn">thumb_up</mat-icon>-->
+<!--      <ng-template #downn>-->
+<!--        <mat-icon matListIcon [ngStyle]="{'color':'red'}" *ngIf="this.pl.boardGame && (this.pl.boardGame.state ==2 || this.pl.boardGame.state ==4) && this.pl.boardGame.PlayersVotedNoForSuggestion && this.pl.boardGame.PlayersVotedNoForSuggestion.includes(player.player); else typing">thumb_down</mat-icon>-->
+<!--      </ng-template>-->
+<!--      <ng-template #typing>-->
+<!--        <mat-icon matListIcon *ngIf="this.pl.boardGame.state == 3 && ((!this.pl.boardGame.PlayersVotedYesForSuggestion || !this.pl.boardGame.PlayersVotedYesForSuggestion.includes(player.player)) && (!this.pl.boardGame.PlayersVotedNoForSuggestion || !this.pl.boardGame.PlayersVotedNoForSuggestion.includes(player.player))); else done">textsms</mat-icon>-->
+<!--      </ng-template>-->
+<!--      <ng-template #done>-->
+<!--        <mat-icon matListIcon *ngIf="this.pl.boardGame.state == 3 ">done</mat-icon>-->
+<!--      </ng-template>-->
+<!--      <mat-icon matListIcon [ngStyle]="{'color':'black'}" *ngIf="this.pl.boardGame && this.pl.boardGame.suggestedPlayers && this.pl.boardGame.suggestedPlayers.includes(player.player) && (this.pl.boardGame.state == 4 || this.pl.boardGame.state == 3)">directions_walk</mat-icon>-->
+
+
+<!--    </td>-->
+<!--  </tr>-->
+<!--</table>-->
 
 
 
 
 
-              </mat-list-item>
-                </mat-list>
 
 
-            </mat-card-content>
 
-          </mat-card>
-        </div>
-      </div>
+<!--              </mat-list-item>-->
+<!--                </mat-list>-->
 
 
-      <div  class="serviceBox2" *ngIf="this.pl.boardGame.players.total > 0 && this.pl.boardGame.state > 0 && this.pl.boardGame.results != null">
+<!--            </mat-card-content>-->
+
+<!--          </mat-card>-->
+<!--        </div>-->
+<!--      </div>-->
 
 
-      </div>
+<!--      <div  class="serviceBox2" *ngIf="this.pl.boardGame.players.total > 0 && this.pl.boardGame.state > 0 && this.pl.boardGame.results != null">-->
 
 
-    </div>
+<!--      </div>-->
 
+
+<!--    </div>-->
+
+
+      <div fxLayout="column" class="right-side" fxLayoutAlign="space-between center">
+        <app-chat *ngIf="authService.isAuthenticated" style="margin-bottom: 50px"></app-chat>
 
     <div class="serviceBoxww">
 
@@ -774,7 +779,8 @@
 
 
     </div>
-
+    </div>
+    </div>
 
   </div>
 </div>

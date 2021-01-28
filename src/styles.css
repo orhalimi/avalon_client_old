@@ -288,3 +288,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 mat-icon.on {
   color: white;
 }
+
+.fg-white {
+  color: white;
+}
+
+.fg-white-input .mat-form-field-underline {
+  background: white !important;
+}
+
