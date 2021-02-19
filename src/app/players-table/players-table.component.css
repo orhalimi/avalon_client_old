@@ -1,0 +1,35 @@
+.circle {
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: #00000094;
+  position: relative;
+}
+
+.player-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: black;
+  position: absolute;
+  margin-left: -30px;
+  margin-top: -30px;
+}
+.player-circle .mat-card-avatar {
+  width: 60px;
+  height: 60px;
+}
+.player-circle-name {
+  position: absolute;
+  width: 60px;
+  bottom: -20px;
+  left: 0;
+  text-align: center;
+  color: white;
+}
+.player-circle-unknown {
+  color: white;
+  font-size: 38px;
+  text-align: center;
+  line-height: 60px;
+}

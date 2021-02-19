@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import { interval } from 'rxjs';
 import {SocketService} from './socket.service';
+import {BoardGameModel} from "./model/board-game.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlayersService {
 
+  boardSubject = new BehaviorSubject<BoardGameModel>(null);
   public messages: Array<any>;
   public chatBox: string;
   public gameState: any;
@@ -35,12 +37,14 @@ export class PlayersService {
             // this.bla = JSON.parse(data);
             console.log('bug');
             this.boardGame.players = event.data.players;
+            this.boardSubject.next(this.boardGame);
           }
         } else {
           let data = event.data.content;
           if (this.isJson(data)) {
             // this.bla = JSON.parse(data);
             this.boardGame = JSON.parse(data);
+            this.boardSubject.next(this.boardGame);
             if (this.oldState !== 3 && this.boardGame.state === 3) {
               this.showSuggestion = true;
             }
@@ -57,6 +61,7 @@ export class PlayersService {
       if (event.type === 'close') {
         this.messages.push('/The socket connection has been closed');
         this.boardGame = [];
+        this.boardSubject.next(this.boardGame);
       }
       if (event.type === 'open') {
         this.messages.push('/The socket connection has been established');

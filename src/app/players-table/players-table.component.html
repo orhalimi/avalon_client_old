@@ -1,0 +1,13 @@
+<div *ngIf="board" fxLayout="row" fxLayoutAlign="center center" style="margin-top: 50px;">
+  <div class="circle">
+    <div *ngFor="let player of board.players.all; let i = index" class="player-circle" [ngStyle]="position[i]">
+      <div *ngIf="player.player === authService.name">
+        <div mat-card-avatar [class]="board.secrets.character"></div>
+      </div>
+      <div *ngIf="player.player !== authService.name" class="player-circle-unknown">?</div>
+      <div class="player-circle-name">{{player.player}}</div>
+    </div>
+
+    <app-quests-overview></app-quests-overview>
+  </div>
+</div>
