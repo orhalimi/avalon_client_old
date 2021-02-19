@@ -166,7 +166,18 @@
 
 </mat-toolbar>
 
-<div style="font-size: 11px; border-style: solid; border-color: darkorange; border-width: thin; background-color: gold; align-content: center; horiz-align: center; text-align: center" *ngIf="this.pl.boardGame && this.pl.boardGame.suggester != null && (this.pl.boardGame.state && ((this.pl.boardGame.state) == 2)) && this.authService.name != this.pl.boardGame.suggester">
+<div style="font-size: 11px; border-style: solid; border-color: darkorange; border-width: thin; background-color: gold; align-content: center; horiz-align: center; text-align: center" *ngIf="this.pl.boardGame && (this.pl.boardGame.state && ((this.pl.boardGame.state) > 0))">
+
+
+
+  STATE: {{this.pl.boardGame.stateDescription}}
+
+
+
+
+</div>
+
+<div style="font-size: 11px; border-style: solid; border-color: darkorange; border-width: thin; background-color: gold; align-content: center; horiz-align: center; text-align: center" *ngIf="false && this.pl.boardGame && this.pl.boardGame.suggester != null && (this.pl.boardGame.state && ((this.pl.boardGame.state) == 2)) && this.authService.name != this.pl.boardGame.suggester">
 
 
 
@@ -299,40 +310,31 @@
 
       <mat-card  class='div-orw'>
         <mat-card-header>
-          <mat-card-title>{{this.authService.name}}, Please Kill
-            <ng-container *ngIf="this.pl.boardGame.murder.byCharacter === 'Assassin' else allrest">1 Player
-            </ng-container>
-            <ng-template #allrest >
-              {{this.pl.boardGame.murder.target.length}} Players
-            </ng-template>
-          </mat-card-title>
         </mat-card-header>
         <mat-card-content>
 
-          <ng-container *ngIf="this.pl.boardGame.murder.byCharacter === 'Assassin'">
+          <ng-container *ngIf="this.pl.boardGame.murder.byCharacter === 'Assassin' else allrest">
             Please choose character to kill:
             <mat-radio-group aria-label="Select an option" [(ngModel)] = "this.assassinKill">
-
             <ng-container *ngFor="let ch of this.pl.boardGame.murder.target">
-
-
                 <mat-radio-button value="{{ch}}">{{ch}}</mat-radio-button>
-
-
             </ng-container>
             </mat-radio-group>
-
 <br>
           </ng-container>
+          <ng-template #allrest >
+            {{this.pl.boardGame.murder.target.length}} Please Kill The Character/s:
+            <ng-container *ngFor="let ch of this.pl.boardGame.murder.target">
+              {{ch}}
+            </ng-container>
+
+          </ng-template>
+
 
           <ng-container *ngFor="let player of this.pl.boardGame.players.all">
-
             <input [(ngModel)]="player.ch" type="checkbox">{{player.player}}
-
           </ng-container>
           <button mat-button (click)="Murder()">Kill!</button>
-
-
 
         </mat-card-content>
       </mat-card>
@@ -348,7 +350,7 @@
         </mat-card-header>
         <mat-card-content>
 
-          <ng-container *ngFor="let player of this.pl.boardGame.players.all">
+          <ng-container *ngFor="let player of this.pl.boardGame.players.active">
 
             <input type="checkbox" [disabled]="!this.playersSuggestion.has(player.player) && maxNo" (change)="onChange(player.player, $event.target.checked)"/>{{player.player}}
 
@@ -360,7 +362,7 @@
             </ng-container>
 
 
-            <ng-container *ngFor="let player of this.pl.boardGame.players.all">
+            <ng-container *ngFor="let player of this.pl.boardGame.players.active">
 
               <ng-container *ngIf="this.playersSuggestion.has(player.player) && player.player != this.authService.name">
 
@@ -479,7 +481,7 @@
     <div *ngIf="(this.pl.boardGame.state && (this.pl.boardGame.state) == 3) && this.pl.showSuggestion && this.pl.boardGame.suggestedPlayers" class='div-orw'>
       <mat-card  class='div-orw'>
         <mat-card-header>
-          <mat-card-title>{{this.pl.boardGame.suggester}} suggested on:
+          <mat-card-title>{{this.pl.boardGame.suggester}}'s suggestion:
             <ng-container *ngFor="let player of this.pl.boardGame.suggestedPlayers">
               {{player}}
             </ng-container>
@@ -492,7 +494,9 @@
 
           <button mat-mini-fab class="div-yes" (click)="SendGoodVote()"><mat-icon>thumb_up</mat-icon></button>
 
+          <ng-container *ngIf="!this.pl.boardGame.onlyGoodSuggested">
           <button class="div-no" mat-mini-fab (click)="SendBadVote()"><mat-icon>thumb_down</mat-icon></button>
+          </ng-container>
 
         </mat-card-content>
       </mat-card>
@@ -553,6 +557,15 @@
             </mat-radio-button>
           </ng-container>
 
+          <ng-container>
+            <mat-radio-button type="radio" name="emptycard" value=6 display="none" id="pp6" [disabled]="!this.pl.boardGame.optionalVotes.includes('Empty')">
+              <label for="pp6">
+
+                <img src="./assets/empty.png" width="120px"/>
+              </label>
+            </mat-radio-button>
+          </ng-container>
+
           <p><button mat-button (click)="JourneyVote()">Vote!</button></p>
 
         </mat-radio-group>
@@ -578,33 +591,75 @@
 <table>
   <tr>
     <td>
-      <ng-container *ngIf="this.pl.boardGame.state && (this.pl.boardGame.state==6 || this.pl.boardGame.state==7) && this.pl.boardGame.playerToCharacters != null && this.pl.boardGame.playerToCharacters[player.player]; else rrr">
+
+      <ng-container *ngIf="this.pl.boardGame.state && ((this.pl.boardGame.playerToCharacters && this.pl.boardGame.playerToCharacters[player.player] && this.pl.boardGame.playerToCharacters[player.player].ch == 'Ector') || ((this.pl.boardGame.state==6 || this.pl.boardGame.state==7 || this.pl.boardGame.state==10 || this.pl.boardGame.state==14) && this.pl.boardGame.playerToCharacters != null && this.pl.boardGame.playerToCharacters[player.player])); else elsenormal">
 
         <img matListAvatar src="./assets/{{this.pl.boardGame.playerToCharacters[player.player].ch}}.png" title="Photo of a Shiba Inu" [class.img-preview]="true">
 
       </ng-container>
 
+      <ng-template #elsenormal >
+
+      <ng-container *ngIf="this.pl.boardGame.state && this.pl.boardGame.playerSecrets != null && this.pl.boardGame.playerSecrets.PlayersWithUncoveredCharacters[player.player]; else rrr">
+        <img matListAvatar src="./assets/{{this.pl.boardGame.playerSecrets.PlayersWithUncoveredCharacters[player.player]}}.png" title="{{player.player}}" [class.img-preview]="true">
+      </ng-container>
 
       <ng-template #rrr >
 
-        <ng-container *ngIf="this.pl.boardGame.secrets.goodplayers && this.pl.boardGame.secrets.goodplayers.includes(player.player); else vivianred">
+        <ng-container *ngIf="this.pl.boardGame.playerSecrets.PlayersWithGoodCharacter && this.pl.boardGame.playerSecrets.PlayersWithGoodCharacter.includes(player.player); else vivianred">
           <img matListAvatar src="./assets/genericblue.png" [class.img-preview]="true">
         </ng-container>
 
-        <ng-template #vivianred >
-          <ng-container *ngIf="this.pl.boardGame.secrets.badplayers && this.pl.boardGame.secrets.badplayers.includes(player.player); else allothers">
-            <img md-list-icon matListAvatar src="./assets/genericred.png" [class.img-preview]="true">
-          </ng-container>
+          <ng-template #vivianred >
+            <ng-container *ngIf="this.pl.boardGame.playerSecrets.PlayersWithBadCharacter && this.pl.boardGame.playerSecrets.PlayersWithBadCharacter.includes(player.player); else playersee">
+              <img md-list-icon matListAvatar src="./assets/genericred.png" [class.img-preview]="true">
+            </ng-container>
 
-          <ng-template #allothers >
-            <img md-list-icon matListAvatar src="./assets/generic.png"  [class.img-preview]="true">
+              <ng-template #playersee >
+                <ng-container *ngIf="this.pl.boardGame.playerSecrets.PlayersSee == player.player; else playersee2">
+                  <img md-list-icon matListAvatar src="./assets/purple_see.jpeg" [class.img-preview]="true">
+                </ng-container>
+
+                  <ng-template #playersee2 >
+                  <ng-container *ngIf="this.pl.boardGame.playerSecrets.PlayersSee2 == player.player; else seen">
+                    <img md-list-icon matListAvatar src="./assets/green_see.jpeg" [class.img-preview]="true">
+                  </ng-container>
+
+                    <ng-template #seen >
+                      <ng-container *ngIf="this.pl.boardGame.playerSecrets.Seen === player.player; else seen2">
+                        <img md-list-icon matListAvatar src="./assets/purple_seen.jpeg" [class.img-preview]="true">
+                      </ng-container>
+
+                        <ng-template #seen2 >
+                          <ng-container *ngIf="this.pl.boardGame.playerSecrets.Seen2 === player.player; else sameloyalty">
+                            <img md-list-icon matListAvatar src="./assets/green_seen.jpeg" [class.img-preview]="true">
+                          </ng-container>
+
+
+                              <ng-template #sameloyalty >
+                                <ng-container *ngIf="this.pl.boardGame.playerSecrets.PlayersWithSameLoyalty && this.pl.boardGame.playerSecrets.PlayersWithSameLoyalty.includes(player.player); else notsame">
+                                  <img md-list-icon matListAvatar src="./assets/purple_seen.jpeg" [class.img-preview]="true">
+                                </ng-container>
+
+                                  <ng-template #notsame >
+                                    <ng-container *ngIf="this.pl.boardGame.playerSecrets.PlayersWithDifferentLoyalty && this.pl.boardGame.playerSecrets.PlayersWithDifferentLoyalty.includes(player.player); else allothers">
+                                      <img md-list-icon matListAvatar src="./assets/green_seen.jpeg" [class.img-preview]="true">
+                                    </ng-container>
+
+
+                                          <ng-template #allothers >
+                                            <img md-list-icon matListAvatar src="./assets/generic.png"  [class.img-preview]="true">
+                                          </ng-template>
+        </ng-template>
+                  </ng-template>
+                </ng-template>
+              </ng-template>
+            </ng-template>
           </ng-template>
         </ng-template>
-
-
-
-
       </ng-template>
+      </ng-template>
+
 
 
     </td>
@@ -704,14 +759,14 @@
 
                       </ng-container>
                       <ng-container *ngIf="quest.value.final == 1">
-                        <img src="./assets/fail.png" alt=' {{quest.value.failures}} Fails, {{quest.value.successes}} Success, {{quest.value.reversals}} Reversal, {{quest.value.beasts}} Beast'
-                             title=' {{quest.value.failures}}  Fails, {{quest.value.successes}} Success, {{quest.value.reversals}} Reversal, {{quest.value.beasts}} Beast'/>
+                        <img src="./assets/fail.png" alt=' {{quest.value.failures}} Fails, {{quest.value.successes}} Success, {{quest.value.empty}} Empty, {{quest.value.reversals}} Reversal, {{quest.value.beasts}} Beast'
+                             title=' {{quest.value.failures}}  Fails, {{quest.value.successes}} Success, {{quest.value.empty}} Empty, {{quest.value.reversals}} Reversal, {{quest.value.beasts}} Beast'/>
 
                       </ng-container>
 
                       <ng-container *ngIf="quest.value.final == 2">
-                        <img src="./assets/success.png" alt=' {{quest.value.failures}}  Fails,  {{quest.value.successes}} Success,  {{quest.value.reversals}} Reversal, {{quest.value.beasts}} Beast'
-                             title=' {{quest.value.failures}}  Fails,  {{quest.value.successes}} Success,  {{quest.value.reversals}} Reversal, {{quest.value.beasts}} Beast'/>
+                        <img src="./assets/success.png" alt=' {{quest.value.failures}}  Fails,  {{quest.value.successes}} Success,  {{quest.value.empty}} Empty, {{quest.value.reversals}} Reversal, {{quest.value.beasts}} Beast'
+                             title=' {{quest.value.failures}}  Fails,  {{quest.value.successes}} Success,  {{quest.value.empty}} Empty, {{quest.value.reversals}} Reversal, {{quest.value.beasts}} Beast'/>
 
                       </ng-container>
 
@@ -756,6 +811,8 @@
           <td class="xxssw">Succeses</td>
 
           <td class="xxssw">Beasts</td>
+
+          <td class="xxssw">Empty</td>
 
         </tr>
 
@@ -836,6 +893,12 @@
             <td class="xxssw">
               <div>
                 {{questItem.numberOfBeasts}}
+              </div>
+            </td>
+
+            <td class="xxssw">
+              <div>
+                {{questItem.numberOfEmpty}}
               </div>
             </td>
 

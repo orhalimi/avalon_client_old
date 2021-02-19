@@ -211,6 +211,11 @@ mat-checkbox ::ng-deep .mat-checkbox-inner-container {width: 20px;height: 20px;}
   background-size: cover;
 }
 
+.Uther-Pendragon {
+  background-image: url('/assets/Uther-Pendragon.png');
+  background-size: cover;
+}
+
 .Nirlem {
   background-image: url('/assets/Nirlem.png');
   background-size: cover;
@@ -274,6 +279,11 @@ mat-checkbox ::ng-deep .mat-checkbox-inner-container {width: 20px;height: 20px;}
 
 .Mora {
   background-image: url('/assets/Mora.png');
+  background-size: cover;
+}
+
+.Claudas {
+  background-image: url('/assets/Claudas.png');
   background-size: cover;
 }
 

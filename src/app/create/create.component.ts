@@ -79,7 +79,8 @@ export class CreateComponent implements OnInit {
           {name: 'Gornemant', checked: false},
           {name: 'Dagonet', checked: false},
           {name: 'Meliagant', checked: false},
-          {name: 'Bors', checked: false}
+          {name: 'Bors', checked: false},
+          {name: 'Uther-Pendragon', checked: false}
       ];
         this.allBadChracters = [{ name: 'Morgana', checked: false, assassin: false},
         { name: 'Assassin', checked: false, assassin: false},
@@ -99,7 +100,8 @@ export class CreateComponent implements OnInit {
           {name: 'Agravain', checked: false, assassin: false},
           {name: 'Nerzhul', checked: false, assassin: false},
           {name: 'Mora', checked: false, assassin: false},
-          {name: 'Melwas', checked: false, assassin: false}
+          {name: 'Melwas', checked: false, assassin: false},
+          {name: 'Claudas', checked: false, assassin: false},
       ];
         this.BadChosen = 0;
         this.numOfPlayers = 0;

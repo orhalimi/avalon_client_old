@@ -601,6 +601,11 @@ a.button1:hover{
   background-size: cover;
 }
 
+.Uther-Pendragon {
+  background-image: url('/assets/Uther-Pendragon.png');
+  background-size: cover;
+}
+
 .Nirlem {
   background-image: url('/assets/Nirlem.png');
   background-size: cover;
@@ -769,6 +774,11 @@ a.button1:hover{
 
 .Mora {
   background-image: url('/assets/Mora.png');
+  background-size: cover;
+}
+
+.Claudas {
+  background-image: url('/assets/Claudas.png');
   background-size: cover;
 }
 
