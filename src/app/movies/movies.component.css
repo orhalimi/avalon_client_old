@@ -148,10 +148,8 @@ td {
   height:100px;
 }
 
-.serviceBoxww {
-  float:left;
-  width:75%;
-  height:100px;
+.right-side {
+  padding-left: 110px;
 }
 
 .bla {

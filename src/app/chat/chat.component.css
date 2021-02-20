@@ -1,0 +1,22 @@
+:host {
+  min-width: 450px;
+}
+.chat-messages {
+  background: #2b2b2b;
+  padding: 5px 10px;
+  height: 160px;
+  overflow: auto;
+  color: white;
+}
+
+.chat-input {
+  background: #2b2b2b;
+  padding: 0 10px;
+  color: white;
+  border-top: 1px solid grey;
+}
+
+.chat-message-sender {
+  font-weight: bold;
+  margin-right: 5px;
+}

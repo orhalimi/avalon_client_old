@@ -42,14 +42,16 @@ export class PlayersService {
         } else {
           let data = event.data.content;
           if (this.isJson(data)) {
-            // this.bla = JSON.parse(data);
-            this.boardGame = JSON.parse(data);
-            this.boardSubject.next(this.boardGame);
-            if (this.oldState !== 3 && this.boardGame.state === 3) {
-              this.showSuggestion = true;
+            let messageContent = JSON.parse(data);
+            if (messageContent.type !== 'chat_message') {
+              this.boardGame = messageContent;
+              this.boardSubject.next(this.boardGame);
+              if (this.oldState !== 3 && this.boardGame.state === 3) {
+                this.showSuggestion = true;
+              }
+              this.oldState = this.boardGame.state;
+              data = 'aaa';
             }
-            this.oldState = this.boardGame.state;
-            data = 'aaa';
           }
           if (event.data.sender) {
               data = event.data.sender + ': ' + data;

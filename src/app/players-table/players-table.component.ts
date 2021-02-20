@@ -3,6 +3,11 @@ import {PlayersService} from "../players.service";
 import {BoardGameModel} from "../model/board-game.model";
 import {AuthService} from "../auth.service";
 
+type Position = {
+  left: string;
+  top: string
+};
+
 @Component({
   selector: 'app-players-table',
   templateUrl: './players-table.component.html',
@@ -11,10 +16,8 @@ import {AuthService} from "../auth.service";
 export class PlayersTableComponent implements OnInit {
 
   board: BoardGameModel = null;
-  position: {
-    left: string;
-    top: string
-  }[] = [];
+  position: Position[] = [];
+  iconsPosition: Position[] = [];
 
   constructor(private playerService: PlayersService, public authService: AuthService) {
     this.playerService.boardSubject.subscribe((board: BoardGameModel) => {
@@ -23,7 +26,8 @@ export class PlayersTableComponent implements OnInit {
       if (!this.board) return;
       this.position = [];
       const angle = 360 / this.board.players.all.length;
-      const radius = 300;
+      const radius = 340;
+      const iconsRadius = 270;
       let counter = 0;
 
       for (const player of this.board.players.all) {
@@ -31,6 +35,10 @@ export class PlayersTableComponent implements OnInit {
         this.position.push({
           left: Math.floor(radius + Math.sin(this.toRadians(playerAngle)) * radius) + 'px',
           top: Math.floor(radius - Math.cos(this.toRadians(playerAngle)) * radius) + 'px'
+        })
+        this.iconsPosition.push({
+          left: Math.floor(iconsRadius + Math.sin(this.toRadians(playerAngle)) * iconsRadius) + 'px',
+          top: Math.floor(iconsRadius - Math.cos(this.toRadians(playerAngle)) * iconsRadius) + 'px'
         })
         counter++;
       }

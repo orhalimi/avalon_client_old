@@ -31,6 +31,7 @@ import { AuthGuardService } from './auth-guard.service';
 import { PlayersTableComponent } from './players-table/players-table.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
 import { QuestsOverviewComponent } from './quests-overview/quests-overview.component';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { QuestsOverviewComponent } from './quests-overview/quests-overview.compo
     TruncatePipe,
     RoundPipe,
     PlayersTableComponent,
-    QuestsOverviewComponent
+    QuestsOverviewComponent,
+    ChatComponent
   ],
     imports: [
         BrowserModule,
