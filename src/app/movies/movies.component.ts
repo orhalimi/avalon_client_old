@@ -53,6 +53,7 @@ export class MoviesComponent implements OnInit {
   public ExcaliburAmt: any;
   public ladyPick: any;
   public ladyResponse: any;
+  public assassinKillErrorMsg: any;
   // tslint:disable-next-line:max-line-length
   public constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private location: Location, public pl: PlayersService, private socket: SocketService, public authService: AuthService) {
         this.movies = [];
@@ -86,6 +87,7 @@ export class MoviesComponent implements OnInit {
         this.chatBox = '';
         this.errMsg = '';
         this.assassinKill = '';
+        this.assassinKillErrorMsg = '';
         this.ladyPick = '';
         this.ladyResponse = 0;
         this.journeyVote.vote = -1;
@@ -147,7 +149,12 @@ export class MoviesComponent implements OnInit {
     this.amt === this.pl.boardGame.results[this.pl.boardGame.current].numofplayers ? this.maxNo = true : this.maxNo = false;
   }
 
+  // tslint:disable-next-line:typedef
+  counter(i: number) {
+    return new Array(i);
+  }
 
+  // tslint:disable-next-line:typedef
   onChangeExcaliburSuggest(player: string, isChecked: boolean) {
     if (isChecked) {
       this.ExcaliburAmt++;
@@ -278,9 +285,15 @@ export class MoviesComponent implements OnInit {
 
   public Murder() {
     this.amt = 0;
+    if (this.assassinKill === '' && this.pl.boardGame.murder.byCharacter === 'Assassin') {
+      this.assassinKillErrorMsg = 'You must choose character!';
+      return;
+    }
     // tslint:disable-next-line:max-line-length
     this.socket.send('{"type":"murder", "content": { "assassinkill": "' + this.assassinKill + '", "rest":' + JSON.stringify(this.pl.boardGame.players.all) + '}}');
     this.MurdermaxNo = false;
+    this.assassinKill = '';
+    this.assassinKillErrorMsg = '';
   }
 
   public SirPick() {

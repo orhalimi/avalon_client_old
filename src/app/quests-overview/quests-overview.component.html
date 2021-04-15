@@ -8,17 +8,17 @@
           <div class="dddww" *ngIf="quest.value.ppp == '3'">Two Fails</div>
 
           <div *ngIf="!quest.value.final">
-            <img src="./assets/none-{{quest.value.numofplayers}}.png"/>
+            <img src="./assets/none-{{quest.value.numofplayers}}.png" width="70" valt=""/>
           </div>
 
           <div *ngIf="quest.value.final == 1">
-            <img src="./assets/fail.png" alt=' {{quest.value.failures}} Fails, {{quest.value.successes}} Success, {{quest.value.reversals}} Reversal, {{quest.value.beasts}} Beast'
+            <img src="./assets/fail.png" width="70" alt=' {{quest.value.failures}} Fails, {{quest.value.successes}} Success, {{quest.value.reversals}} Reversal, {{quest.value.beasts}} Beast'
                  title=' {{quest.value.failures}}  Fails, {{quest.value.successes}} Success, {{quest.value.reversals}} Reversal, {{quest.value.beasts}} Beast'/>
 
           </div>
 
           <div *ngIf="quest.value.final == 2">
-            <img src="./assets/success.png" alt=' {{quest.value.failures}}  Fails,  {{quest.value.successes}} Success,  {{quest.value.reversals}} Reversal, {{quest.value.beasts}} Beast'
+            <img src="./assets/success.png" width="70" alt=' {{quest.value.failures}}  Fails,  {{quest.value.successes}} Success,  {{quest.value.reversals}} Reversal, {{quest.value.beasts}} Beast'
                  title=' {{quest.value.failures}}  Fails,  {{quest.value.successes}} Success,  {{quest.value.reversals}} Reversal, {{quest.value.beasts}} Beast'/>
 
           </div>

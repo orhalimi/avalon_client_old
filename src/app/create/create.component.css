@@ -127,8 +127,38 @@ mat-checkbox ::ng-deep .mat-checkbox-inner-container {width: 20px;height: 20px;}
   background-size: cover;
 }
 
+.Loyal-Servent-Of-Arthur {
+  background-image: url('/assets/Loyal-Servent-Of-Arthur.png');
+  background-size: cover;
+}
+
+.Loyal-Servent-Of-Arthur1 {
+  background-image: url('/assets/Loyal-Servent-Of-Arthur1.png');
+  background-size: cover;
+}
+
+.Loyal-Servent-Of-Arthur2 {
+  background-image: url('/assets/Loyal-Servent-Of-Arthur2.png');
+  background-size: cover;
+}
+
+.Loyal-Servent-Of-Arthur3 {
+  background-image: url('/assets/Loyal-Servent-Of-Arthur3.png');
+  background-size: cover;
+}
+
+.Loyal-Servent-Of-Arthur4 {
+  background-image: url('/assets/Loyal-Servent-Of-Arthur4.png');
+  background-size: cover;
+}
+
 .Guinevere {
   background-image: url('/assets/Guinevere.png');
+  background-size: cover;
+}
+
+.Lancelot {
+  background-image: url('/assets/Lancelot.png');
   background-size: cover;
 }
 
@@ -359,6 +389,21 @@ mat-checkbox ::ng-deep .mat-checkbox-inner-container {width: 20px;height: 20px;}
 
 .Meliagant {
   background-image: url('/assets/Meliagant.png');
+  background-size: cover;
+}
+
+.Minion-Of-Mordred {
+  background-image: url('/assets/Minion-Of-Mordred.png');
+  background-size: cover;
+}
+
+.Minion-Of-Mordred1 {
+  background-image: url('/assets/Minion-Of-Mordred1.png');
+  background-size: cover;
+}
+
+.Minion-Of-Mordred2 {
+  background-image: url('/assets/Minion-Of-Mordred2.png');
   background-size: cover;
 }
 

@@ -25,6 +25,7 @@ export class PlayersTableComponent implements OnInit {
       this.board = board;
       if (!this.board) return;
       this.position = [];
+      this.iconsPosition = [];
       const angle = 360 / this.board.players.all.length;
       const radius = 340;
       const iconsRadius = 270;

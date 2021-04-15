@@ -4,6 +4,7 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
+
 .character-img {
   border-radius: 50%;
 }
@@ -11,6 +12,50 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+.PurpleSee {
+  background-image: url('/assets/purple_see.jpeg');
+  background-size: cover;
+}
+
+.GreenSee {
+  background-image: url('/assets/green_see.jpeg');
+  background-size: cover;
+}
+
+.GreenSeen {
+  background-image: url('/assets/green_seen.jpeg');
+  background-size: cover;
+}
+
+.PurpleSeen {
+  background-image: url('/assets/purple_seen.jpeg');
+  background-size: cover;
+}
+
+.MorganaMerlin {
+  background-image: url('/assets/MorganaMerlin.png');
+  background-size: cover;
+}
+
+.MorganaViviana {
+  background-image: url('/assets/MorganaViviana.png');
+  background-size: cover;
+}
+
+.GenericBlue {
+  background-image: url('/assets/genericblue.png');
+  background-size: cover;
+}
+
+.GenericRed {
+  background-image: url('/assets/genericred.png');
+  background-size: cover;
+}
+
+.Percival {
+  background-image: url('/assets/Percival.png');
+  background-size: cover;
+}
 
 .MerlinA {
   visibility: hidden;
@@ -32,6 +77,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .Prince-Claudin {
   background-image: url('/assets/Prince-Claudin.png');
+  background-size: cover;
+}
+
+.Uther-Pendragon {
+  background-image: url('/assets/Uther-Pendragon.png');
   background-size: cover;
 }
 
@@ -105,8 +155,38 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   background-size: cover;
 }
 
+.Loyal-Servent-Of-Arthur {
+  background-image: url('/assets/Loyal-Servent-Of-Arthur.png');
+  background-size: cover;
+}
+
+.Loyal-Servent-Of-Arthur1 {
+  background-image: url('/assets/Loyal-Servent-Of-Arthur1.png');
+  background-size: cover;
+}
+
+.Loyal-Servent-Of-Arthur2 {
+  background-image: url('/assets/Loyal-Servent-Of-Arthur2.png');
+  background-size: cover;
+}
+
+.Loyal-Servent-Of-Arthur3 {
+  background-image: url('/assets/Loyal-Servent-Of-Arthur3.png');
+  background-size: cover;
+}
+
+.Loyal-Servent-Of-Arthur4 {
+  background-image: url('/assets/Loyal-Servent-Of-Arthur4.png');
+  background-size: cover;
+}
+
 .Guinevere {
   background-image: url('/assets/Guinevere.png');
+  background-size: cover;
+}
+
+.Lancelot {
+  background-image: url('/assets/Lancelot.png');
   background-size: cover;
 }
 
@@ -147,6 +227,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .Morgana {
   background-image: url('/assets/Morgana.png');
+  background-size: cover;
+}
+
+.Good-Angel {
+  background-image: url('/assets/Good-Angel.png');
   background-size: cover;
 }
 
@@ -266,6 +351,21 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   background-size: cover;
 }
 
+.Minion-Of-Mordred {
+  background-image: url('/assets/Minion-Of-Mordred.png');
+  background-size: cover;
+}
+
+.Minion-Of-Mordred1 {
+  background-image: url('/assets/Minion-Of-Mordred1.png');
+  background-size: cover;
+}
+
+.Minion-Of-Mordred2 {
+  background-image: url('/assets/Minion-Of-Mordred2.png');
+  background-size: cover;
+}
+
 .Dagonet {
   background-image: url('/assets/Dagonet.png');
   background-size: cover;
@@ -278,6 +378,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .Dagonet {
   background-image: url('/assets/Dagonet.png');
+  background-size: cover;
+}
+
+.Merlin {
+  background-image: url('/assets/Merlin.png');
   background-size: cover;
 }
 

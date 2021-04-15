@@ -75,6 +75,18 @@ export interface Secrets {
   character: string;
 }
 
+export interface PlayerSecret {
+  PlayersWithSameLoyalty: string[];
+  PlayersWithDifferentLoyalty: string[];
+  PlayersWithGoodCharacter: string[];
+  PlayersWithBadCharacter: string[];
+  PlayersWithUncoveredCharacters: { [key: string]: string };
+  PlayersSee: string;
+  Seen: string;
+  PlayersSee2: string;
+  Seen2: string;
+}
+
 export interface Murder {
   target?: any;
   by: string;
@@ -86,11 +98,22 @@ export interface Sir {
 }
 
 export interface Result {
+  final?: number;
   ppp?: number;
   numofplayers?: number;
   successes?: number;
+  reversals?: number;
   failures?: number;
+  beasts?: number;
+  avalon_power?: boolean;
+  empty?: number;
 }
+
+export interface PlayerInfo {
+  ch?: string;
+  isKilled?: boolean;
+}
+
 
 
 export interface BoardGameModel {
@@ -100,19 +123,33 @@ export interface BoardGameModel {
   characters: Characters;
   size: number;
   state: number;
+  stateDescription: string;
   archive: Archive[];
   secrets: Secrets;
+  playerSecrets: PlayerSecret;
   suggester: string;
   murder: Murder;
   sir: Sir;
   optionalVotes: string[];
   suggesterVeto: string;
+  onlyGoodSuggested: boolean;
   suggestedPlayers: string[];
+  suggestedTemporaryPlayers: string;
   PlayersVotedForCurrQuest: string[];
   PlayersVotedYesForSuggestion: string[];
+  PlayersVotedNoForSuggestion: string[];
   results: { [key: string]: Result };
+  playerToCharacters: { [key: string]: PlayerInfo };
   excalibur: boolean;
   suggestedExcalibur: string;
+  isLady: boolean;
+  ladySuggester: string;
+  ladyChosenPlayer: string;
+  ladyResponse: string;
+  LadyResponseOptions: string[];
+  ladyPublish: string;
+  ladyPreviousSuggester: string;
 }
+
 
 

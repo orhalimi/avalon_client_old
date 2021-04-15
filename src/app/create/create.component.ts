@@ -62,6 +62,11 @@ export class CreateComponent implements OnInit {
           { name: 'Lot', checked: false},
           {name: 'Cordana', checked: false},
           {name: 'The-Coward', checked: false},
+          {name: 'Loyal-Servent-Of-Arthur', checked: false},
+          {name: 'Loyal-Servent-Of-Arthur1', checked: false},
+          {name: 'Loyal-Servent-Of-Arthur2', checked: false},
+          {name: 'Loyal-Servent-Of-Arthur3', checked: false},
+          {name: 'Loyal-Servent-Of-Arthur4', checked: false},
           {name: 'Merlin-Apprentice', checked: false},
           {name: 'Guinevere', checked: false},
           {name: 'Lancelot-Good', checked: false},
@@ -80,7 +85,7 @@ export class CreateComponent implements OnInit {
           {name: 'Dagonet', checked: false},
           {name: 'Meliagant', checked: false},
           {name: 'Bors', checked: false},
-          {name: 'Uther-Pendragon', checked: false}
+          {name: 'Uther-Pendragon', checked: false},
       ];
         this.allBadChracters = [{ name: 'Morgana', checked: false, assassin: false},
         { name: 'Assassin', checked: false, assassin: false},
@@ -102,6 +107,9 @@ export class CreateComponent implements OnInit {
           {name: 'Mora', checked: false, assassin: false},
           {name: 'Melwas', checked: false, assassin: false},
           {name: 'Claudas', checked: false, assassin: false},
+          {name: 'Minion-Of-Mordred', checked: false},
+          {name: 'Minion-Of-Mordred1', checked: false},
+          {name: 'Minion-Of-Mordred2', checked: false},
       ];
         this.BadChosen = 0;
         this.numOfPlayers = 0;

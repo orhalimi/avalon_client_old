@@ -29,9 +29,11 @@ import {AuthService} from './auth.service';
 import { AuthInterceptorService } from './auth-interceptor.service';
 import { AuthGuardService } from './auth-guard.service';
 import { PlayersTableComponent } from './players-table/players-table.component';
-import {FlexLayoutModule} from "@angular/flex-layout";
+import {FlexLayoutModule} from '@angular/flex-layout';
 import { QuestsOverviewComponent } from './quests-overview/quests-overview.component';
 import { ChatComponent } from './chat/chat.component';
+
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,7 @@ import { ChatComponent } from './chat/chat.component';
     imports: [
         BrowserModule,
         AppRoutingModule,
+        MatTabsModule,
         FormsModule,
         HttpClientModule,
         RouterModule,

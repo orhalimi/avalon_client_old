@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import {BehaviorSubject} from "rxjs";
 
-const SAVE_LOCALSTORAGE = false;
+const SAVE_LOCALSTORAGE = true;
 
 @Injectable()
 export class AuthService {
