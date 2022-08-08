@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-import {BehaviorSubject} from "rxjs";
+import { BehaviorSubject } from "rxjs";
 
 const SAVE_LOCALSTORAGE = true;
 
@@ -10,7 +10,7 @@ const SAVE_LOCALSTORAGE = true;
 export class AuthService {
 
   public data: any;
-  API_URL = 'http://3.121.237.188:12345'; //3.121.195.232 52.57.227.87
+  API_URL = 'http://127.0.0.1:12345'; //3.121.195.232 52.57.227.87
   // API_URL = 'http://3.121.195.232:12345'; //3.121.195.232 52.57.227.87
   TOKEN_KEY = 'token';
   NAME = 'name';
